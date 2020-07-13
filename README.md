@@ -16,3 +16,6 @@ echo 'venv/' > .gitignore
 
 django-admin startproject movierater .
 django-admin startapp api
+
+
+edit Django
