@@ -11,8 +11,8 @@ touch README.md
 
 set up git repo
 
-touch .gitignore
-echo 'venv/' > .gitignore
+echo venv/ >> .gitignore
+echo *.sqlite3 >> .gitignore
 
 django-admin startproject movierater .
 django-admin startapp api
