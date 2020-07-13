@@ -25,7 +25,7 @@ SECRET_KEY = 'ceg-vfku&4$y$5q2xr-cnm%0^=4hl^919%(q2uq_a18(ksm8qr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.17']
 
 
 # Application definition
