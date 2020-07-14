@@ -2,15 +2,21 @@ from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.models import User
 from .models import Movie, Rating
-from .serializers import MovieSerializer, RatingSerializer
+from .serializers import MovieSerializer, RatingSerializer, UserSerializer
 
 # Create your views here.
+class UserViewSet(viewsets.ModelViewSet):
+  queryset = User.objects.all()
+  serializer_class = UserSerializer
+
 
 class MovieViewSet(viewsets.ModelViewSet):
   queryset = Movie.objects.all()
   serializer_class = MovieSerializer
+  authentication_classes = (TokenAuthentication,)
 
   @action(detail=True, methods=['POST'])
   def rate_movie(self, request, pk=None):
@@ -18,9 +24,9 @@ class MovieViewSet(viewsets.ModelViewSet):
 
       movie = Movie.objects.get(id=pk)
       stars = request.data['stars']
-      #user = request.user
-      user = User.objects.get(id=1)
-      print('user', user.username)
+      user = request.user
+
+      print('user', user)
       print('movie title', movie.title)
 
       try:
